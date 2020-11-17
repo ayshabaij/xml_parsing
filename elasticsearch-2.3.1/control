@@ -1,0 +1,10 @@
+Package: elasticsearch
+Version: 2.3.1
+Section: web
+Priority: optional
+Architecture: all
+Depends: libc6, adduser
+Installed-Size: 30056
+Maintainer: Elasticsearch Team <info@elastic.co>
+Description: Elasticsearch is a distributed RESTful search engine built for the cloud. Reference documentation can be found at https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html and the 'Elasticsearch: The Definitive Guide' book can be found at https://www.elastic.co/guide/en/elasticsearch/guide/current/index.html
+Homepage: https://www.elastic.co/

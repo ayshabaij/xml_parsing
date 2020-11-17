@@ -1,0 +1,101 @@
+<h1>Welcome !</h1>
+<p><%= @user %></p>
+
+View <%= link_to 'Bookmarks', bookmarks_path %>
+<div class="container alert alert-light">
+  <%# <% binding.pry %>
+  <%= form_tag(xmls_path, method: :get, class: "form-inline", role: 'search') do %>
+  <div class="input-group">
+    <%= text_field_tag :term, params[:term], placeholder: 'Search', class: 'form-control', id: 'search', autocomplete: :off %>
+    <div class="input-group-btn search-panel">
+      <%= submit_tag 'Search', name: nil, class: "btn btn-default" %>
+    </div>
+  </div>
+  <% end %>
+
+  <% @xml.each do |x| %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+      <tr>
+        <td>Name :</td>
+        <td><%= x.name %></td>  </tr>
+        <tr>
+          <td>Citation:</td>
+          <td><%= x.citation %></td>
+        </tr>
+        <tr>
+          <td>Year:</td>
+          <td><%= x.year %></td>
+        </tr>
+        <tr>
+          <td>nominal app:</td>
+          <td><%= x.nominal_app %></td>
+        </tr>
+        <tr>
+          <td>nominal res:</td>
+          <td><%= x.nominal_res %></td>
+        </tr>
+        <tr>
+          <td>headnote:</td>
+          <td><%= x.headnote %></td>
+        </tr>
+        <tr>
+          <td>judgement:</td>
+          <td><%= x.judgement %></td>
+        </tr>
+        <tr>
+          <td>case no:</td>
+          <td><%= x.case_no %></td>
+        </tr>
+        <tr>
+          <td>justices:</td>
+          <td><%= x.justices %></td>
+        </tr>
+        <tr>
+          <td>case number:</td>
+          <td><%= x.case_number %></td>
+        </tr>
+        <tr>
+          <td>party details:</td>
+          <td><%= x.party_details %></td>
+        </tr>
+        <tr>
+          <td>petitioner advocates:</td>
+          <td><%= x.petitioner_advocates %></td>
+        </tr>
+        <tr>
+          <td>respondent advocates:</td>
+          <td><%= x.respondent_advocates %></td>
+        </tr>
+        <tr>
+          <td>judgement date:</td>
+          <td><%= x.judgement_date %></td>
+        </tr>
+        <tr>
+          <td>judgement object id:</td>
+          <td><%= x.judgement_object_id %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
+    <script type="text/javascript">
+      $(document).on('turbolinks:load',function(){
+        var xmls = new Bloodhound({
+          datumTokenizer: Bloodhound.tokenizers.whitespace,
+          queryTokenizer: Bloodhound.tokenizers.whitespace,
+          remote: {
+            url: '/xmls/autocomplete?query=%QUERY',
+            wildcard: '%QUERY'
+          }
+        });
+        $("#search").typeahead(null, {
+          source: xmls
+        });
+      })
+    </script>

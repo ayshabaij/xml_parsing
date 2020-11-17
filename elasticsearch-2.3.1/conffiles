@@ -1,0 +1,5 @@
+/etc/default/elasticsearch
+/etc/elasticsearch/elasticsearch.yml
+/etc/elasticsearch/logging.yml
+/etc/init.d/elasticsearch
+/usr/lib/systemd/system/elasticsearch.service
