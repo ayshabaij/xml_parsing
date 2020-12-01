@@ -1,6 +1,6 @@
 class Xml < ApplicationRecord
   # require 'nokogiri'
-  acts_as_votable
+  act_as_bookmarkee
   searchkick word_start: [:name, :citation, :year, :nominal_app, :nominal_res, :headnote, :judgement,
     :case_no,:justices,:case_number,:party_details,:petitioner_advocates,:respondent_advocates,:judgement_date,
     :judgement_object_id]

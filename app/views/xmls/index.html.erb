@@ -1,24 +1,28 @@
 <h1>Welcome !</h1>
 <p><%= @user %></p>
 
-View <%= link_to 'Bookmarks', bookmarks_path %>
+<%# View <%= link_to 'Bookmarks', xml_bookmarks_path %>
 <div class="container alert alert-light">
   <%# <% binding.pry %>
+  <%= link_to 'Create PDF document', xmls_path(@xml, :format => :pdf) %>
   <%= form_tag(xmls_path, method: :get, class: "form-inline", role: 'search') do %>
   <div class="input-group">
     <%= text_field_tag :term, params[:term], placeholder: 'Search', class: 'form-control', id: 'search', autocomplete: :off %>
     <div class="input-group-btn search-panel">
-      <%= submit_tag 'Search', name: nil, class: "btn btn-default" %>
+      <%= submit_tag 'Search', name: nil, class: "btn btn-default", id:"search" %>
     </div>
   </div>
   <% end %>
-
+<br><br><br>
   <% @xml.each do |x| %>
   <table>
     <thead>
       <tr>
         <th>Title</th>
         <th>Data</th>
+        <input type="button" onclick="<% controller.bookmark %>">
+
+        <%# <%= submit_tag 'Bookmark', name: nil, class: "btn btn-default" , id: "bookmark", onclick =" <%= controller.bookmark %>" %><br><br> %>
       </tr>
     </thead>
     <tbody id="myTable">
@@ -98,4 +102,21 @@ View <%= link_to 'Bookmarks', bookmarks_path %>
           source: xmls
         });
       })
+
+
+
+      // $(function() {
+      //  $("#bookmark").on("click", function(event) {
+          // event.preventDefault();
+          // $.ajax({
+          //   type: "POST",
+          //   url: "xmls_controller/bookmark",
+          //   data: "your_form_data"
+          //   success: function(data) {
+          //     alert("Success");
+          //   },
+          // });
+      //  });
+      // });
+
     </script>
